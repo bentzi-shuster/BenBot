@@ -6,21 +6,20 @@ import yake
 import discord
 from dotenv import load_dotenv
 
+lmt = 1 ## Limit of gifs to be returned
+devmode = False ## If true, bot will return a random gif 100% of the time
+messagePercentInt=5 ## Percentage of messages to be checked for keywords
+
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-apikey = os.getenv('TENORAPIKEY')  # click to set to your apikey
-lmt = 1
-ckey = "discord_bot_key"  # click to set to your ckey
+apikey = os.getenv('TENORAPIKEY')
+ckey = os.getenv("ckey")
 
 
-client = discord.Client()
+client = discord.Client() # Creates a client object
 
-@client.event
-async def on_ready():
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
 @client.event
 async def on_message(message):
     firstchar = message.content[0]
@@ -30,7 +29,8 @@ async def on_message(message):
 
     # 5% chance of responding to a message
     if message.author == client.user: return
-    if Random().randrange(0, 100) > 5 : return
+    if not devmode:
+        if Random().randrange(0, 100) > messagePercentInt : return
     async def reply(msg):
         kw_extractor = yake.KeywordExtractor()
         keywords = kw_extractor.extract_keywords(msg)
