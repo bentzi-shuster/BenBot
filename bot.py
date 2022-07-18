@@ -23,6 +23,11 @@ async def on_ready():
             break
 @client.event
 async def on_message(message):
+    firstchar = message.content[0]
+    if firstchar == "&" and message.content[1:].strip() == "help":
+        await message.channel.send("I'm a bot that sends gifs based on your message.\n")
+        return
+
     # 5% chance of responding to a message
     if message.author == client.user: return
     if Random().randrange(0, 100) > 5 : return
