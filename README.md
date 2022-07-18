@@ -1,5 +1,5 @@
 # BenBot
-### this is a bot made by Ben to spam gifs 
+### This is a bot made by Ben to spam gifs 
 ##### the top of bot.py is has some config variables
 ```python
 # bot.py config variables
@@ -14,4 +14,17 @@ DISCORD_GUILD=
 TENORAPIKEY=
 ckey=
 ```
-#### there is also a help command that can be accessed by typing `&help`
+#### There is also a help command that can be accessed by typing `&help`, it just sends a message 
+
+#### The bot uses the following libraries:
+```python
+# bot.py imports
+import json
+import os
+from random import Random, random
+import requests
+import yake
+import discord
+from dotenv import load_dotenv
+```
+##### This bot is made by Ben, and comes as is with no warranty or support.
